@@ -33,6 +33,11 @@ class List():
         return l
 
     def get_node(self, idx: int) -> Node:
+        """
+        This method gets the index of node you're searcing for and return it.
+
+        If index exceeds the length of list, it will return the last node. 
+        """
         if idx == 0:
             return self.head
         else:
