@@ -1,7 +1,7 @@
 class Node():
-    def __init__(self, data) -> None:
-        self.data = data
-        self.next = None
+    def __init__(self, data: any) -> None:
+        self.data: any = data
+        self.next: Node = None
 
 class List():
     def __init__(self, head: Node) -> None:
@@ -16,6 +16,18 @@ class List():
         while curr.next != None:
             curr = curr.next
         curr.next = node
+    
+    def add(self, idx: int, node: Node) -> None:
+        if idx < self.length() - 1:
+            curr = self.head
+            while idx and curr.next != None:
+                curr = curr.next
+                idx -= 1
+            node.next = curr.next
+            curr.next = node
+            
+        else:
+            print('out of scope')
 
     def out(self) -> None:
         curr = self.head
@@ -46,16 +58,49 @@ class List():
                 curr = curr.next
                 idx -= 1
             return curr
+    
+    def pop_start(self) -> None:
+        poped = self.head
+        self.head = poped.next
 
-first = Node('first')
-second = Node('second')
-third = Node('third')
+    def pop_end(self) -> None:
+        curr = self.head
+        i = 0
+        while i < self.length()-2 and curr.next != None:
+            curr = curr.next
+            i += 1
 
-test = List(first)
-test.add_last(second)
-test.add_last(third)
+        curr.next = None
 
-test.out()
-print(test.get_node())
+    def del_node(self, idx: int) -> str:
+        if idx < self.length() - 1:
+            deleted = Node()
+            # code goes here
+            return deleted.data
+        else:
+            print('out of scope')
 
-import bs4
+nodes = []
+for i in range(1, 11):
+    nodes.append(Node(f'node #{i}'))
+
+linked = List(Node('first'))
+for node in nodes:
+    linked.add_last(node)
+
+linked.pop_start()
+linked.pop_start()
+linked.pop_end()
+linked.pop_end()
+linked.pop_end()
+linked.pop_end()
+
+linked.out()
+print(f'now length is: {linked.length()}')
+
+'''
+[DONE] delete from beginning and end
+[ ] delete from
+[DONE] insert at middle
+
+'''
