@@ -65,10 +65,8 @@ class List():
 
     def pop_end(self) -> None:
         curr = self.head
-        i = 0
-        while i < self.length()-2 and curr.next != None:
+        while curr.next.next != None:
             curr = curr.next
-            i += 1
 
         curr.next = None
 
